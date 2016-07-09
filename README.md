@@ -6,7 +6,7 @@
 **provision box first**
 `sudo apt-get install netcat-openbsd tcpdump traceroute mtr`
 
-### Lesson1 Introduction
+### Lesson1 
 #### ip - show  / manipulate routing, devices, policy routing and tunnels   
 `ip addr show eth0`
 
@@ -63,4 +63,15 @@ An  open file may be a regular file, a directory, a block special file, a charac
 stream  or  a  network  file  (Internet socket, NFS file or UNIX domain socket.)  A specific file or all the files in  a  file  system  may  be
 selected by path.
 `sudo lsof -i`
+
+### lesson 2
+`ping google.com`  
+`host google.com` `host -t a google.com`  
+
+#### dig same info as host but formatted better for scripts  
+`dig google.com`  
+
+
+
+
 
