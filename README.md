@@ -7,7 +7,9 @@
 `sudo apt-get install netcat-openbsd tcpdump traceroute mtr`
 
 ### Lesson1 
-#### ip - show  / manipulate routing, devices, policy routing and tunnels   
+#### ip - show  / manipulate routing, devices, policy routing and tunnels  
+show what interfaces your computer has  
+`ip addr show`   
 `ip addr show eth0`
 
 `ip route show`  `route -n`  
@@ -70,6 +72,101 @@ selected by path.
 
 #### dig same info as host but formatted better for scripts  
 `dig google.com`  
+
+#### DNS record types
+*CNAME - canoical name
+*AAAA (quad-A) - IPv6 address
+*A - IPv4 address
+*NS - DNS name server  what DNS servers hold the records for that domain.  
+
+
+### lesson 3  
+32-bit addresses 
+#####netblocks   
+198.51.1000/22 - 22-bit network part/10-bit host part  
+/24 network = 8 bits of host part = 2^8 addresses = 256  
+minus the resrved two and the router, 253 addresses remain for hosts.  
+
+#####subnet masks  
+32-bit values 
+/24 netblock  = 24 ones, 8 zeros  
+255.255.155.0  decimal dotted quad  
+11111111 | 11111111 | 11111111 | 00000000   binary      
+   ff         ff         ff         00    hex    
+
+subnet mask /16 network  
+255.255.0.0  
+
+Stanford University  
+171.64.0.0/14  
+*1st oct - all 8 bits fixed
+*2nd oct - 6 bits fixed, 2 bits free so there are 4 values for this octet
+All address starting with 171.64, 171.65, 171.66 or 171.67 are in this /14 netblock.  
+
+subnet mask for /14 netblock  
+14-bit network part -  18-bit host part  
+11111111111111 | 00000000000000000  
+11111111 | 111111 | 00 00000000 | 00000000 |  
+255         252         0            0        255-3 which is 3 == 11 in binary  
+
+how many addresses in a /14?  
+18-bit host par = 2^18 addresses = 262144  
+
+show what interfaces your computer has  
+`ip addr show` 
+lo = loopback interface  
+eth0 = ethernet interface
+
+`ifconfig`  does same thing  
+
+##### LAN
+local area network 
+where your computers and devices are   
+
+##### WAN
+wide area network  
+outward facing interface that connects to rest of internet  
+
+Find the default gateway  
+`ip route show default`  
+
+##### NAT  Network Address Translation  
+makes a table of what inside addresses and ports are connected to what outside addresses and ports  
+192.168.0.42:17384  <----> 206.190.36.45:443  
+
+most common on home routers:  
+192.168.0.0/24  
+default gateway 192.168.0.1  
+
+**private address netblocks:**
+10.0.0.0/8  
+172.16.0.0/12    
+192.168.0.0/16  
+
+
+### Lesson 4  HTTP on TCP on IP  
+
+| HTTP | Application | HTTP | SSH | NTP |
+| ---- | ----------- | -----| --- | --- |
+|TCP  | Transport  | TCP | UDP |
+|IP | Internet | IP |
+|Hardware | Router | Ethernet | WIFI |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
