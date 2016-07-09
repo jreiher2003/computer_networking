@@ -181,8 +181,8 @@ load up in wireshark.
 
 ##### Sequence Diagrams  
 
-Browser            Server
-|------------------|   
+Browser____________Server  
+|------------------|  
 |  ->->->->->->->  |  
 GET / Connection: keep-alive  
 
