@@ -147,6 +147,7 @@ default gateway 192.168.0.1
 ### Lesson 4  HTTP on TCP on IP  
 
 | HTTP | Application | HTTP | SSH | NTP |
+| ---- | ----------- | -----| --- | --- |
 |TCP  | Transport  | TCP | UDP |
 |IP | Internet | IP |
 |Hardware | Router | Ethernet | WIFI |
