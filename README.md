@@ -10,13 +10,6 @@
 #### ip - show  / manipulate routing, devices, policy routing and tunnels   
 `ip addr show eth0`
 
-```2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 06:a5:fc:0b:a6:e5 brd ff:ff:ff:ff:ff:ff
-    inet 10.20.16.140/18 brd 10.20.63.255 scope global eth0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::4a5:fcff:fe0b:a6e5/64 scope link
-       valid_lft forever preferred_lft forever
-```
 `ip route show`  `route -n`  
 ```default via 10.20.0.1 dev eth0
 10.20.0.0/18 dev eth0  proto kernel  scope link  src 10.20.16.140```
