@@ -170,9 +170,58 @@ in another terminal
 `ping jeffreiher.com`  
 
 ##### Listen for HTTP in tcpdump  
-`sudo tcpdump -n port 80` 
+`sudo tcpdump -n port 80`  
+`sudo tcpdump -n port 80 -w write-to-file.txt
 2nd terminal  
 `printf "GET / HTTP/1.1\r\nHost: www.example.com\r\n\r\n" | nc www.example.com 80` 
+
+prints out a network capture 
+`sudo tcpdump -n port 80 -w jeffreiher_tcp_capture.pcap`  load up in wireshark.  
+
+##### Sequence Diagrams  
+
+Browser |------------------| Server  
+        |  ->->->->->->->  |  
+        GET / Connection: keep-alive  
+        |                  |  
+        | <-<-<-<-<-<-<-<- |  
+        contents of main page  
+        |                  |  
+        |  ->->->->->->->  |  
+        GET / favicon.ico  
+        |                  |  
+        | <-<-<-<-<-<-<-<- |    
+        |    favicon file  |  
+
+##### connection establishment  
+| What TCP Does | How TCP Does It |  
+| ------------- | --------------- |  
+| communicate between two hosts | IP Layer (addresses + routing) |
+| multiple applications per host | port numbers |  
+| in-order delivery |  sequence numbers |
+| lossless delivery |  acknowledgment + retransmission |  
+| keeping connections distinct | random initial sequence numbers |  
+
+##### TCP Flags  
+###### The six basic TCP flags  
+1. SYN (synchronize) [S] — This packet is opening a new TCP session and contains a new initial sequence number.  
+2. FIN (finish) [F] — This packet is used to close a TCP session normally. The sender is saying that they are finished sending, but they can still receive data from the other endpoint.  
+3.  PSH (push) [P] — This packet is the end of a chunk of application data, such as an HTTP request.  
+4.  RST (reset) [R] — This packet is a TCP error message; the sender has a problem and wants to reset (abandon) the session.  
+5.  ACK (acknowledge) [.] — This packet acknowledges that its sender has received data from the other endpoint. Almost every packet except the first SYN will have the ACK flag set.  
+6. URG (urgent) [U] — This packet contains data that needs to be delivered to the application out-of-order. Not used in HTTP or most other current applications.  
+
+###### TCP timeouts  
+1. the other host is powered off  
+2. a windstorm blows down cable between you and your isp.  
+3. You're connecting to a server that doesn't exist.  
+
+### Lesson 5
+
+
+
+
+
 
 
 
