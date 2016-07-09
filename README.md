@@ -74,9 +74,9 @@ selected by path.
 `dig google.com`  
 
 #### DNS record types
-*CNAME - canoical name
-*AAAA (quad-A) - IPv6 address
-*A - IPv4 address
+*CNAME - canoical name  
+*AAAA (quad-A) - IPv6 address  
+*A - IPv4 address  
 *NS - DNS name server  what DNS servers hold the records for that domain.  
 
 
@@ -99,8 +99,8 @@ subnet mask /16 network
 
 Stanford University  
 171.64.0.0/14  
-*1st oct - all 8 bits fixed
-*2nd oct - 6 bits fixed, 2 bits free so there are 4 values for this octet
+* 1st oct - all 8 bits fixed  
+* 2nd oct - 6 bits fixed, 2 bits free so there are 4 values for this octet  
 All address starting with 171.64, 171.65, 171.66 or 171.67 are in this /14 netblock.  
 
 subnet mask for /14 netblock  
@@ -150,7 +150,32 @@ default gateway 192.168.0.1
 | ---- | ----------- | -----| --- | --- |
 |TCP  | Transport  | TCP | UDP |
 |IP | Internet | IP |
-|Hardware | Router | Ethernet | WIFI |
+|Hardware | Router | Ethernet | WIFI |  
+
+| Protocol | Concepts | Where the code is | Failures |
+| ------- | --------- | ----------------- | -------- | 
+| HTTP | resources, URL's, verbs, cookies | Flask, Apache, Browsers, | error code slow reponse |
+| TCP | ports, sessions, stream sockets | OS kernel, system libraries | broken connections timeouts | 
+| IP | IP addresses, packets | OS kernel, routers | various |
+| WIFI | access points, WPA passwords | device drivers | network unavailable |  
+
+##### Using Ping and DNS in tcpdump  
+`sudo tcpdump -n host 8.8.8.8`  listens for traffic going from my host to ip 8.8.8.8  
+in another terminal  
+`ping -c3 8.8.8.8`  you should see packets in first terminal  
+
+##### Listen for DNS traffic default port for dns is 53    
+`sudo tcpdump -n port 53`  
+2nd terminal  
+`ping jeffreiher.com`  
+
+##### Listen for HTTP in tcpdump  
+`sudo tcpdump -n port 80` 
+2nd terminal  
+`printf "GET / HTTP/1.1\r\nHost: www.example.com\r\n\r\n" | nc www.example.com 80` 
+
+
+
 
 
 
