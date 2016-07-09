@@ -180,8 +180,8 @@ load up in wireshark.
 `sudo tcpdump -n port 80 -w jeffreiher_tcp_capture.pcap`    
 
 ##### Sequence Diagrams  
-
-Browser____________Server  
+```
+Browser          Server    
 |------------------|  
 |  ->->->->->->->  |  
 GET / Connection: keep-alive  
@@ -194,6 +194,7 @@ GET / favicon.ico
                             
 | <-<-<-<-<-<-<-<- |    
 |    favicon file  |  
+```
 
 #### connection establishment  
 | What TCP Does | How TCP Does It |  
