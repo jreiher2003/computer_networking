@@ -171,29 +171,31 @@ in another terminal
 
 ##### Listen for HTTP in tcpdump  
 `sudo tcpdump -n port 80`  
-`sudo tcpdump -n port 80 -w write-to-file.txt
+`sudo tcpdump -n port 80 -w write-to-file.txt`    
 2nd terminal  
 `printf "GET / HTTP/1.1\r\nHost: www.example.com\r\n\r\n" | nc www.example.com 80` 
 
-prints out a network capture 
-`sudo tcpdump -n port 80 -w jeffreiher_tcp_capture.pcap`  load up in wireshark.  
+#######prints out a network capture  
+load up in wireshark.    
+`sudo tcpdump -n port 80 -w jeffreiher_tcp_capture.pcap`    
 
 ##### Sequence Diagrams  
 
-Browser |------------------| Server  
-        |  ->->->->->->->  |  
-        GET / Connection: keep-alive  
-        |                  |  
-        | <-<-<-<-<-<-<-<- |  
-        contents of main page  
-        |                  |  
-        |  ->->->->->->->  |  
-        GET / favicon.ico  
-        |                  |  
-        | <-<-<-<-<-<-<-<- |    
-        |    favicon file  |  
+Browser            Server
+|------------------|   
+|  ->->->->->->->  |  
+GET / Connection: keep-alive  
 
-##### connection establishment  
+| <-<-<-<-<-<-<-<- |  
+contents of main page  
+                            
+|  ->->->->->->->  |  
+GET / favicon.ico  
+                            
+| <-<-<-<-<-<-<-<- |    
+|    favicon file  |  
+
+#### connection establishment  
 | What TCP Does | How TCP Does It |  
 | ------------- | --------------- |  
 | communicate between two hosts | IP Layer (addresses + routing) |
@@ -202,7 +204,7 @@ Browser |------------------| Server
 | lossless delivery |  acknowledgment + retransmission |  
 | keeping connections distinct | random initial sequence numbers |  
 
-##### TCP Flags  
+#### TCP Flags  
 ###### The six basic TCP flags  
 1. SYN (synchronize) [S] — This packet is opening a new TCP session and contains a new initial sequence number.  
 2. FIN (finish) [F] — This packet is used to close a TCP session normally. The sender is saying that they are finished sending, but they can still receive data from the other endpoint.  
