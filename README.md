@@ -138,7 +138,7 @@ most common on home routers:
 192.168.0.0/24  
 default gateway 192.168.0.1  
 
-**private address netblocks:**
+**private address netblocks:**  
 10.0.0.0/8  
 172.16.0.0/12    
 192.168.0.0/16  
@@ -219,7 +219,21 @@ GET / favicon.ico
 2. a windstorm blows down cable between you and your isp.  
 3. You're connecting to a server that doesn't exist.  
 
-### Lesson 5
+### Lesson 5 
+#### Traceroute and MTR  
+`traceroute jeffreiher.com`  
+`mtr jeffreiher`  
+
+#####bandwidth * delay(latency) product:
+The amount of data that can be in transit through a connection.  
+`bits/seconds * seconds = bits`  
+
+**Bandwidth** If Internet cables is a water pipe then bandwidth is the flow rate through the pip (in liters/second)  
+**Latency** and delay or latency is the time it takes to get through the pip (seconds)  
+**Product** their product is the volume of the pipe (in liters).  
+
+
+
 
 
 
