@@ -81,7 +81,8 @@ selected by path.
 
 
 ### lesson 3  
-32-bit addresses 
+IPv4 - 32-bit addresses  ~ 4,294,967,296 host addresses  
+IPv6 - 128-bit addresses ~ 340,282,366,920,938,463,463,374,607,431,768,211,456 host addresses  
 #####netblocks   
 198.51.1000/22 - 22-bit network part/10-bit host part  
 /24 network = 8 bits of host part = 2^8 addresses = 256  
