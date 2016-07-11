@@ -1,0 +1,30 @@
+mininet@mininet-vm:~$ sudo mn --test pingpair
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2
+*** Adding switches:
+s1
+*** Adding links:
+(h1, s1) (h2, s1)
+*** Configuring hosts
+h1 h2
+*** Starting controller
+c0
+*** Starting 1 switches
+s1 ...
+*** Waiting for switches to connect
+s1
+h1 -> h2
+h2 -> h1
+*** Results: 0% dropped (2/2 received)
+*** Stopping 1 controllers
+c0
+*** Stopping 2 links
+..
+*** Stopping 1 switches
+s1
+*** Stopping 2 hosts
+h1 h2
+*** Done
+completed in 5.462 seconds
