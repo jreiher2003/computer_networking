@@ -68,8 +68,12 @@ selected by path.
 
 ### lesson 2
 `ping google.com`  
-`host google.com` `host -t a google.com`  
+`host google.com` `host -t a google.com` 
 
+### nslookup
+`nslookup jeffreiher.com`  
+`nslookup <ipaddress>`  
+ 
 #### dig same info as host but formatted better for scripts  
 `dig google.com`  
 
