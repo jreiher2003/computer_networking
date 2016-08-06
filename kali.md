@@ -26,7 +26,7 @@ on firefox or iceweasel
 `about:config`  
 search `media.peerconnection.enabled` in box  
 change value to *false*  -- close browser to reset  
-##### go to [www.vpnbook.com](www.vpnbook.com) its a free vpn  
+##### go to [www.vpnbook.com](http://www.vpnbook.com) its a free vpn  
 go to free vpn and download any of the links available  
 browser must be **closed** to set up vpn.
 `cd /Downloads`  `unzip VPNBook.com.zip`  
