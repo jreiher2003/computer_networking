@@ -107,7 +107,7 @@ do
     macchanger -r wlan0 | grep "New MAC"
     iwconfig wlan0 mode monitor 
     ifconfig wlan0 up
-    iwcofngi wlan0 | grep Mode
+    iwcofig wlan0 | grep Mode
     sleep 3
     echo "Waiting!!!!!"
 done
