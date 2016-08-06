@@ -46,6 +46,11 @@ search mac address venders [here](http://www.coffer.com/mac_find/?string=08%3A00
 won't connect in a VM only works with a linux full machine version.  
 to change mac address in VM turn machine off go to settings and network then advanced.  push rotate button and presto. turn back on.  
 
+### change hostname 
+put into a file and chmod +x mv /usr/bin/filename  
+`newhn=$(cat /dev/urandom | tr -dc 'A-Za-z' | head -c8)
+echo $newhn > /etc/hostname
+
 
 ### create a boot time script
 1. create script and save to /Documents  ex.
