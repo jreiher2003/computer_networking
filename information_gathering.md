@@ -1,4 +1,12 @@
-#Network analysis information gathering (using linux-kali-rolling)
+#Network analysis footprinting and information gathering (using linux-kali-rolling)
+#### 7 steps to footprinting 
+1. Information gathering
+2. Determining the network range
+3. Identifying active machines
+4. Finding open ports and access points
+5. OS fingerprinting
+6. Fingerprinting services
+7. Mapping the network
 
 ## Nmap - Network exploration tool and security / port scanner  
 [scripts to use with nmap](nmap.org/nsedoc/)  to detect vulnerability's  
@@ -30,6 +38,25 @@ returns a json object  same info as whois
   "postal": "94536"
 }
 ```
+## Nslookup
+`nslookup www.cisco.com`  
+```
+Server:     208.67.222.222
+Address:    208.67.222.222#53
+
+Non-authoritative answer:
+www.cisco.com   canonical name = www.cisco.com.akadns.net.
+www.cisco.com.akadns.net    canonical name = wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net canonical name = wwwds.cisco.com.edgekey.net.globalredir.akadns.net.
+wwwds.cisco.com.edgekey.net.globalredir.akadns.net  canonical name = e144.dscb.akamaiedge.net.
+Name:   e144.dscb.akamaiedge.net
+Address: 23.202.80.170
+```
+## traceroute find path to server 
+#### unable to complete on vm have to use full install
+`traceroute www.host.com`  
+
+
 
 
 
