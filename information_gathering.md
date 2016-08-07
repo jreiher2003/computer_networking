@@ -9,11 +9,13 @@
 7. Mapping the network
 
 ## Nmap - Network exploration tool and security / port scanner  
-[scripts to use with nmap](nmap.org/nsedoc/)  to detect vulnerability's  
-[exploit-db](www.exploit-db.com) 
+[scripts to use with nmap](http://nmap.org/nsedoc/)  to detect vulnerability's  
+[exploit-db](http://www.exploit-db.com) 
 
 ##### basic scan  
 `nmap scanme.nmap.org -vv` 
+`nmap -sP 10.0.0.0/8 -vv`  scan local network ping sweep of hosts
+`nmap -sP 192.168.2.1/24` or  `nmap $1 -n -sP | grep report | awk '{print $5}'` or `arp -a -n` finds all live hosts on network 
 
 ##### local ip network scan range on port 22 saving to file SCAN  
 `nmap -oG - 192.168.1.0-255 -p 22 -vv > /home/SCAN`  
