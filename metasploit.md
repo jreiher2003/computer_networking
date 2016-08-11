@@ -26,7 +26,7 @@ The only real drawback of msfcli is that it is not supported quite as well as ms
 ```
 
 ## Msfconsole Commands
-[https://www.offensive-security.com/metasploit-unleashed/msfconsole-commands/](msfconsole)  
+[msfconsole](https://www.offensive-security.com/metasploit-unleashed/msfconsole-commands/)  
 too many to list all of them here
 
 ## Using Metasploit DB 
@@ -119,6 +119,86 @@ for root, dirs, files in os.walk("c://"):
              print(os.path.join(root, file))
 ```
 `meterpreter > python_import -f /root/findfiles.py`  
+___
+## Information gathering  
+* port scanning  
+* hunting for MSSQL  
+* service identification  
+* password sniffing  
+* snmp sweeping  
+___
+
+### Port Scanning  
+* preparing metaploit for port scanning  
+* Scanners and most other auxiliary modules use the RHOSTS option instead of RHOST.  
+* scanner modules will have the THREADS value set to ‘1’. 
+    - Keep the THREADS value under 16 on native Win32 systems  
+    - Keep THREADS under 200 when running MSF under Cygwin  
+    - On Unix-like operating systems, THREADS can be set to 256.  
+
+#### Contents 
+* Nmap & db_nmap
+* Port Scanning
+* SMB Version Scanning
+* Idle Scanning
+
+##### nmap and db_nmap  
+`msf > nmap -v -sV 192.168.1.0/24 -oA subnet_1`  this will generate 3 files that can be loaded into db later.  
+`db_nmap -v -sV 192.168.1.0/24`  this will poplulate the db right straight away.  
+
+##### port scanning  
+`search portscan`  checks the port scanning modules  
+`msf > cat subnet_1.gnmap | grep 80/open | awk '{print $2}'`  checks to see what ports have 80 open from our scan.  
+
+switch to use a new scanner  
+`msf > use auxiliary/scanner/portscan/syn`  
+`msf auxiliary(syn) > show options`  gives options available  
+set options  
+```
+msf auxiliary(syn) > set INTERFACE eth0
+INTERFACE => eth0
+msf auxiliary(syn) > set PORTS 80
+PORTS => 80
+msf auxiliary(syn) > set RHOSTS 192.168.1.0/24
+RHOSTS => 192.168.1.0/24
+msf auxiliary(syn) > set THREADS 50
+THREADS => 50
+msf auxiliary(syn) > run
+```  
+switch to new scanner   
+`msf > use auxiliary/scanner/portscan/tcp`  
+`msf  auxiliary(tcp) > show options`  
+`msf  auxiliary(tcp) > hosts -R`   we can issue the ‘hosts -R’ command to automatically set this option with the hosts found in our database.  
+`msf  auxiliary(tcp) > run`  
+
+##### SMB Version Scanning
+Now that we have determined which hosts are available on the network, we can attempt to determine which operating systems they are running. This will help us narrow down our attacks to target a specific system and will stop us from wasting time on those that aren’t vulnerable to a particular exploit.  
+
+`msf > use auxiliary/scanner/smb/smb_version`  
+```
+msf auxiliary(smb_version) > set RHOSTS 192.168.1.200-210
+RHOSTS => 192.168.1.200-210
+msf auxiliary(smb_version) > set THREADS 11
+THREADS => 11
+msf auxiliary(smb_version) > run
+```
+`msf auxiliary(smb_version) > hosts`  now newly acquired information is stored in db.  
+
+##### Idle Scanning  
+Nmap’s IPID Idle scanning allows us to be a little stealthy scanning a target while spoofing the IP address of another host on the network. In order for this type of scan to work, we will need to locate a host that is idle on the network and uses IPID sequences of either Incremental or Broken Little-Endian Incremental. Metasploit contains the module ‘scanner/ip/ipidseq’ to scan and look for a host that fits the requirements.[more info](https://nmap.org/book/idlescan.html)  
+`msf > use auxiliary/scanner/ip/ipidseq`  
+`msf auxiliary(ipidseq) > show options`  
+```
+msf auxiliary(ipidseq) > set RHOSTS 192.168.1.0/24
+RHOSTS => 192.168.1.0/24
+msf auxiliary(ipidseq) > set THREADS 50
+THREADS => 50
+msf auxiliary(ipidseq) > run
+```
+`msf auxiliary(ipidseq) > nmap -PN -sI 192.168.1.109 192.168.1.114`  
+
+
+
 
 
 
