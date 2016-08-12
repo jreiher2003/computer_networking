@@ -58,6 +58,11 @@ Address: 23.202.80.170
 #### unable to complete on vm have to use full install
 `traceroute www.host.com`  
 
+## nmap scripts to run against vulen ip's  
+[here](https://nmap.org/nsedoc/scripts/http-tplink-dir-traversal.html)
+`nmap -p80 --script http-tplink-dir-traversal.nse --script-args rfile=/etc/topology.conf -d -n -Pn <target>`
+* install script from [download](Download: http://nmap.org/svn/scripts/http-tplink-dir-traversal.nse)
+`locate *.nse`  
 
 
 
