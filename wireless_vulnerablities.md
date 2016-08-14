@@ -7,6 +7,8 @@ from this https://ubuntuforums.org/showthread.php?t=528276
 2. `ifconfig wlan0 down`  
 3. `iwconfig wlan0 mode monitor|manage`  
 4. `ifconfig wlan0 up`  
+or  
+`airmon-ng start wlan0`  
 ##### check airmon-ng is good to go
 1. `airmon-ng check wlan0`  
 2. kill processes that are running.  `kill NetworkManager`  
@@ -50,6 +52,8 @@ Aircrack-PTW:
 2. `ifconfig wlan0 down`  
 3. `iwconfig wlan0 mode monitor`  
 4. `ifconfig wlan0 up`
+or  
+`airmon-ng start wlan0`  
 ##### check airmon-ng is good to go
 5. `airmon-ng check wlan0`  
 6. kill processes that are running.  `kill NetworkManager`  
