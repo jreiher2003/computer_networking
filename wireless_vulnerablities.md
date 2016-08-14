@@ -79,6 +79,10 @@ macchanger -a mon0
 ifconfig mon0 up
 macchanger -s mon0
 ```
+#### Aireplay-ng  
+`aireplay-ng -0 0 -e XJ-900 -a <target bssid> -c <target host mac addr> -h <source of attack> <interface>  
+
+#### Turn wifi card back into manager mode to connect to Internet.   
 
 # REAVER v1.5.2 WiFi Protected Setup Attack Tool
 `reaver --help`  
