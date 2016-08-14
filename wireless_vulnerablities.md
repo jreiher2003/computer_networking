@@ -66,6 +66,20 @@ Aircrack-PTW:
 13. `crunch 10 10 -t @@@@@@@@@@ -f charset.lst mixalpha-numeric-space`  
 14. `aircrack-ng -w /root/nmap.lst SCAN_test-01.cap`  
 
+#### Change your wifi's card MAC Address 
+``` 
+ifconfig wlan0 down
+ifconfig wlan0 hw ether 00:11:22:33:44:55
+ifconfig wlan0 up
+```
+or 
+```
+ifconfig mon0 down
+macchanger -a mon0
+ifconfig mon0 up
+macchanger -s mon0
+```
+
 # REAVER v1.5.2 WiFi Protected Setup Attack Tool
 `reaver --help`  
 1. `ifconfig`  

