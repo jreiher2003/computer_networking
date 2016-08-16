@@ -1,0 +1,6 @@
+REAVER things to try.
+check to see if its installed
+dpkg -l {package_name}
+dpkg -l | less
+apt-cache search name*
+dpkg --install libpcap0.8_1.4.0-2_amd64.deb 

