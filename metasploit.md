@@ -272,6 +272,35 @@ msf exploit(handler) > use post/windows/gather/enum_patches
 msf post(enum_patches) > show options
 ```
 
+## Vulnerability Scanning  
+
+### SMB Login Check
+A common situation to find yourself in is being in possession of a valid username and password combination, and wondering where else you can use it.  
+[docs](https://www.offensive-security.com/metasploit-unleashed/smb-login-check/)
+### VNC Authentication 
+The VNC Authentication None Scanner is an Auxiliary Module for Metasploit. This tool will search a range of IP addresses looking for targets that are running a VNC Server without a password configured.  
+[docs](https://www.offensive-security.com/metasploit-unleashed/vnc-authentication/)
+### WMAP Web Scanner
+WMAP is a feature-rich web application vulnerability scanner that was originally created from a tool named SQLMap. This tool is integrated with Metasploit and allows us to conduct web application scanning from within the Metasploit Framework.  
+`load wmap`  
+`msf > help`  
+`wmap_sites -h`  
+`wmap_sites -a http://172.16.194.172`  
+`wmap_sites -l`  
+`wmap_targets -h`  
+`wmap_targets -t http://172.16.194.172/mutillidae/index.php`  
+`wmap_targets -l`  
+`wmap_run -h`  
+`wmap_run -t`  
+`wmap_run -e`  
+`wmap_vulns -l`  
+`vulns`  
+
+## NeXpose
+[docs](https://www.offensive-security.com/metasploit-unleashed/nexpose-msfconsole/)
+
+## Nessus
+[docs](https://www.offensive-security.com/metasploit-unleashed/working-with-nessus/)
 
 
  
