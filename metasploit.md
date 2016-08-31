@@ -296,11 +296,14 @@ WMAP is a feature-rich web application vulnerability scanner that was originally
 `wmap_vulns -l`  
 `vulns`  
 
-## NeXpose
+### NeXpose
 [docs](https://www.offensive-security.com/metasploit-unleashed/nexpose-msfconsole/)
 
-## Nessus
+### Nessus
 [docs](https://www.offensive-security.com/metasploit-unleashed/working-with-nessus/)
 
+##Writing a Simple Fuzzer
+[docs](https://www.offensive-security.com/metasploit-unleashed/writing-simple-fuzzer/)
 
+## Exploit Development
  
